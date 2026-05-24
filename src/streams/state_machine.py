@@ -3,8 +3,8 @@ from __future__ import annotations
 import time
 from enum import Enum
 from typing import Optional
-import faust
-from src.streams.app import app
+
+
 
 
 class OrderStatus(str, Enum):
@@ -27,6 +27,9 @@ VALID_TRANSITIONS = {
     OrderStatus.CANCELLED: set(),
 }
 
+
+import faust
+from src.streams.app import app
 
 class StateChangeEvent(faust.Record):
     order_id: str

@@ -14,7 +14,6 @@ app = faust.App(
 
 from src.streams.enrichment import OrderEnrichmentStream  # noqa: E402, F401
 from src.streams.fraud_detection import FraudDetectionStream  # noqa: E402, F401
-from src.streams.state_machine import OrderStateMachine  # noqa: E402, F401
 
 
 def main() -> None:
