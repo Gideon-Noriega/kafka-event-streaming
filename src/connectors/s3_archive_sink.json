@@ -1,0 +1,16 @@
+{
+  "name": "s3-archive-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+    "topics": "orders.placed,orders.enriched,payments.processed,shipments.created",
+    "s3.bucket.name": "order-events-archive",
+    "s3.region": "us-east-1",
+    "flush.size": 1000,
+    "format.class": "io.confluent.connect.s3.format.parquet.ParquetFormat",
+    "parquet.codec": "snappy",
+    "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
+    "path.format": "year=YYYY/month=MM/day=dd/hour=HH",
+    "timezone": "UTC",
+    "partition.duration.ms": 3600000
+  }
+}

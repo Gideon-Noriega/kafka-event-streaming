@@ -1,0 +1,41 @@
+# Topic configuration definitions
+topics:
+  - name: orders.placed
+    partitions: 12
+    replication_factor: 1
+    config:
+      retention.ms: 604800000
+      cleanup.policy: delete
+      compression.type: lz4
+
+  - name: orders.enriched
+    partitions: 12
+    replication_factor: 1
+    config:
+      retention.ms: 604800000
+
+  - name: orders.fraud_alerts
+    partitions: 3
+    config:
+      retention.ms: 2592000000
+
+  - name: orders.dlq
+    partitions: 1
+    config:
+      retention.ms: 7776000000
+
+  - name: payments.processed
+    partitions: 6
+    config:
+      retention.ms: 604800000
+
+  - name: shipments.created
+    partitions: 6
+    config:
+      retention.ms: 604800000
+
+  - name: customers.profiles
+    partitions: 6
+    config:
+      cleanup.policy: compact
+      min.cleanable.dirty.ratio: 0.1

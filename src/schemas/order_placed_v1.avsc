@@ -1,0 +1,79 @@
+{
+  "type": "record",
+  "name": "OrderPlaced",
+  "namespace": "com.ecommerce.orders",
+  "doc": "Order placed v1",
+  "fields": [
+    {
+      "name": "order_id",
+      "type": "string"
+    },
+    {
+      "name": "customer_id",
+      "type": "string"
+    },
+    {
+      "name": "items",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "OrderItem",
+          "fields": [
+            {
+              "name": "product_id",
+              "type": "string"
+            },
+            {
+              "name": "product_name",
+              "type": "string"
+            },
+            {
+              "name": "quantity",
+              "type": "int"
+            },
+            {
+              "name": "unit_price",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "total_amount",
+      "type": "double"
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "default": "USD"
+    },
+    {
+      "name": "payment_method",
+      "type": {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": [
+          "credit_card",
+          "debit_card",
+          "paypal",
+          "bank_transfer",
+          "crypto"
+        ]
+      }
+    },
+    {
+      "name": "shipping_address",
+      "type": "string"
+    },
+    {
+      "name": "region",
+      "type": "string"
+    },
+    {
+      "name": "placed_at",
+      "type": "long"
+    }
+  ]
+}

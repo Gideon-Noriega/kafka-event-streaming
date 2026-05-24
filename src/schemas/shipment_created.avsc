@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "ShipmentCreated",
+  "namespace": "com.ecommerce.shipments",
+  "fields": [
+    {
+      "name": "shipment_id",
+      "type": "string"
+    },
+    {
+      "name": "order_id",
+      "type": "string"
+    },
+    {
+      "name": "customer_id",
+      "type": "string"
+    },
+    {
+      "name": "carrier",
+      "type": "string"
+    },
+    {
+      "name": "tracking_number",
+      "type": "string"
+    },
+    {
+      "name": "estimated_delivery",
+      "type": "long"
+    },
+    {
+      "name": "items_count",
+      "type": "int"
+    },
+    {
+      "name": "weight_kg",
+      "type": "double"
+    },
+    {
+      "name": "created_at",
+      "type": "long"
+    }
+  ]
+}

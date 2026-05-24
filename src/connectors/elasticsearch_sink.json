@@ -1,0 +1,16 @@
+{
+  "name": "elasticsearch-orders-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "connection.url": "http://elasticsearch:9200",
+    "topics": "orders.enriched,orders.fraud_alerts",
+    "key.ignore": "false",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://redpanda:8081",
+    "write.method": "upsert",
+    "batch.size": 200,
+    "max.retries": 5,
+    "retry.backoff.ms": 500
+  }
+}

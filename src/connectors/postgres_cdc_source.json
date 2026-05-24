@@ -1,0 +1,20 @@
+{
+  "name": "postgres-cdc-source",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "streaming",
+    "database.password": "streaming_pass",
+    "database.dbname": "orders",
+    "database.server.name": "orders-db",
+    "plugin.name": "pgoutput",
+    "table.include.list": "public.customers,public.orders",
+    "topic.prefix": "cdc",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://redpanda:8081",
+    "snapshot.mode": "initial",
+    "heartbeat.interval.ms": "10000"
+  }
+}

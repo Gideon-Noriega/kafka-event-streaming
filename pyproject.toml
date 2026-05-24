@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kafka-event-streaming"
+version = "1.0.0"
+description = "Production-grade Kafka event streaming platform for e-commerce order processing"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [{name = "Gideon Noriega"}]
+dependencies = [
+    "confluent-kafka[avro,schema-registry]>=2.3.0",
+    "faust-streaming>=0.11.0",
+    "fastavro>=1.9.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "structlog>=23.2.0",
+    "prometheus-client>=0.19.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "httpx>=0.25.0",
+    "tenacity>=8.2.0",
+    "orjson>=3.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "pytest-timeout>=2.2.0",
+    "testcontainers[kafka]>=3.7.0",
+    "hypothesis>=6.92.0",
+    "ruff>=0.1.8",
+    "mypy>=1.7.0",
+    "pre-commit>=3.6.0",
+]
+
+[project.scripts]
+order-producer = "src.producers.idempotent:main"
+payment-consumer = "src.consumers.exactly_once:main"
+stream-app = "src.streams.app:main"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "S", "B", "A", "COM", "C4", "PT", "RET", "SIM"]
+ignore = ["S101", "COM812"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+    "unit: Unit tests (no external deps)",
+    "integration: Integration tests (require Kafka)",
+    "e2e: End-to-end tests (full pipeline)",
+]

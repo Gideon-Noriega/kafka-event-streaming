@@ -1,0 +1,71 @@
+{
+  "type": "record",
+  "name": "PaymentProcessed",
+  "namespace": "com.ecommerce.payments",
+  "fields": [
+    {
+      "name": "payment_id",
+      "type": "string"
+    },
+    {
+      "name": "order_id",
+      "type": "string"
+    },
+    {
+      "name": "customer_id",
+      "type": "string"
+    },
+    {
+      "name": "amount",
+      "type": "double"
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "default": "USD"
+    },
+    {
+      "name": "payment_method",
+      "type": {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": [
+          "credit_card",
+          "debit_card",
+          "paypal",
+          "bank_transfer",
+          "crypto"
+        ]
+      }
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "PaymentStatus",
+        "symbols": [
+          "success",
+          "failed",
+          "pending",
+          "refunded"
+        ]
+      }
+    },
+    {
+      "name": "failure_reason",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "transaction_ref",
+      "type": "string"
+    },
+    {
+      "name": "processed_at",
+      "type": "long"
+    }
+  ]
+}
